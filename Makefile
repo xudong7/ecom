@@ -10,6 +10,7 @@ test:
 run: tidy build
 	@./bin/ecom
 
+# clean bin directory
 clean:
 	@rm -rf bin
 	@echo "Cleaned up bin directory"
