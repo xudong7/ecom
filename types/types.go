@@ -11,7 +11,32 @@ type UserStore interface {
 type ProductStore interface {
 	GetProducts() ([]Product, error)
 	GetProductByName(name string) (*Product, error)
+	GetProductByIDs(ids []int) ([]Product, error)
 	CreateProduct(Product) error
+	UpdateProduct(Product) error
+}
+
+type OrderStore interface {
+	CreateOrder(Order) (int, error)
+	CreateOrderItem(OrderItem) error
+}
+
+type OrderItem struct {
+	ID        int       `json:"id"`
+	OrderID   int       `json:"orderId"`
+	ProductID int       `json:"productId"`
+	Quantity  int       `json:"quantity"`
+	Price     float64   `json:"price"`
+	CreatedAt time.Time `json:"createdAt"`
+}
+
+type Order struct {
+	ID        int       `json:"id"`
+	UserID    int       `json:"userId"`
+	Total     float64   `json:"total"`
+	Status    string    `json:"status"`
+	Address   string    `json:"address"`
+	CreatedAt time.Time `json:"createdAt"`
 }
 
 type Product struct {
@@ -22,14 +47,6 @@ type Product struct {
 	Price       float64   `json:"price"`
 	Quantity    int       `json:"quantity"`
 	CreatedAt   time.Time `json:"createdAt"`
-}
-
-type CreateProductPayload struct {
-	Name        string  `json:"name" validate:"required"`
-	Description string  `json:"description" validate:"required"`
-	Image       string  `json:"image" validate:"required"`
-	Price       float64 `json:"price" validate:"required"`
-	Quantity    int     `json:"quantity" validate:"required"`
 }
 
 type User struct {
@@ -51,4 +68,21 @@ type RegisterUserPayload struct {
 type LoginUserPayload struct {
 	Email    string `json:"email" validate:"required,email"`
 	Password string `json:"password" validate:"required"`
+}
+
+type CreateProductPayload struct {
+	Name        string  `json:"name" validate:"required"`
+	Description string  `json:"description" validate:"required"`
+	Image       string  `json:"image" validate:"required"`
+	Price       float64 `json:"price" validate:"required"`
+	Quantity    int     `json:"quantity" validate:"required"`
+}
+
+type CartCheckoutPayload struct {
+	Items []CartItem `json:"items" validate:"required"`
+}
+
+type CartItem struct {
+	ProductID int `json:"productId"`
+	Quantity  int `json:"quantity"`
 }
