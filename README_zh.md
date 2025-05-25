@@ -2,8 +2,6 @@
 
 基于Go构建的现代化电商后端服务，具备用户管理、商品目录和订单处理功能。
 
-灵感来源于 [Complete Backend Engineering Course in Go](https://www.youtube.com/watch?v=7VLmLOiQ3ck&list=PLYEESps429vrFV0yiN_MCaDPhnYb0qRxK)
-
 ## 系统要求
 
 - Go 1.23.5 或更高版本
