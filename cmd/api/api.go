@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/xudong7/ecom/service/products"
 	"github.com/xudong7/ecom/service/user"
 )
 
@@ -25,9 +26,15 @@ func (s *APIServer) Run() error {
 	router := mux.NewRouter()
 	subRouter := router.PathPrefix("/api/v1").Subrouter()
 
+	// user routes
 	userStore := user.NewStore(s.db)
 	userHandler := user.NewHandler(userStore)
 	userHandler.RegisterRoutes(subRouter)
+
+	// products routes
+	productsStore := products.NewStore(s.db)
+	productHandler := products.NewHandler(productsStore)
+	productHandler.RegisterRoutes(subRouter)
 
 	log.Println("Starting server on", s.addr)
 

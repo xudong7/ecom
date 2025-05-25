@@ -1,5 +1,6 @@
 tidy:
 	@go mod tidy
+	@clear
 
 build:	
 	@go build -o bin/ecom cmd/main.go
