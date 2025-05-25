@@ -2,8 +2,6 @@
 
 A modern e-commerce backend service built with Go, featuring user management, product catalog, and order processing.
 
-Inspired by [Complete Backend Engineering Course in Go](https://www.youtube.com/watch?v=7VLmLOiQ3ck&list=PLYEESps429vrFV0yiN_MCaDPhnYb0qRxK)
-
 ## Prerequisites
 
 - Go 1.23.5 or later
